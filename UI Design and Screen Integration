@@ -1,0 +1,37 @@
+@Composable
+fun ComposeInputScreen() {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf("") }
+
+    Scaffold(
+        topBar = { TopAppBar(title = { Text("Compose Input Demo") }) }
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            EmailInputField(
+                email = email,
+                onEmailChange = { email = it }
+            )
+            PasswordInputField(
+                password = password,
+                onPasswordChange = { password = it }
+            )
+            PhoneNumberInputField(
+                phoneNumber = phoneNumber,
+                onPhoneNumberChange = { phoneNumber = it }
+            )
+            Button(
+                onClick = { /* Add Submit Logic */ },
+                modifier = Modifier.padding(top = 16.dp).fillMaxWidth()
+            ) {
+                Text("Submit")
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ComposeInputScreenPreview() {
+    ComposeInputScreen()
+}
