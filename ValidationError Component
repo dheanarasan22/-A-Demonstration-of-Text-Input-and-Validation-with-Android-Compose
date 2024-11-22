@@ -1,0 +1,9 @@
+@Composable
+fun ValidationError(errorMessage: String) {
+    Text(
+        text = errorMessage,
+        color = MaterialTheme.colorScheme.error,
+        style = MaterialTheme.typography.bodySmall,
+        modifier = Modifier.padding(8.dp)
+    )
+}
