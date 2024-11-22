@@ -1,0 +1,23 @@
+import com.google.i18n.phonenumbers.PhoneNumberUtil
+
+@Composable
+fun PhoneNumberInputField(
+    phoneNumber: String,
+    onPhoneNumberChange: (String) -> Unit
+) {
+    val phoneUtil = PhoneNumberUtil.getInstance()
+    val isValid = try {
+        val parsed = phoneUtil.parse(phoneNumber, "US")
+        phoneUtil.isValidNumber(parsed)
+    } catch (e: Exception) {
+        false
+    }
+
+    TextInputField(
+        label = "Phone Number",
+        value = phoneNumber,
+        onValueChange = onPhoneNumberChange,
+        isError = phoneNumber.isNotBlank() && !isValid,
+        errorMessage = if (!isValid) "Invalid phone number" else null
+    )
+}
