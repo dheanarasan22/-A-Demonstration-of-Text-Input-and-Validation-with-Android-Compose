@@ -1,0 +1,26 @@
+@Composable
+fun TextInputField(
+    label: String,
+    value: String,
+    onValueChange: (String) -> Unit,
+    isError: Boolean = false,
+    errorMessage: String? = null
+) {
+    Column(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            label = { Text(label) },
+            isError = isError,
+            modifier = Modifier.fillMaxWidth()
+        )
+        if (isError && errorMessage != null) {
+            Text(
+                text = errorMessage,
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+            )
+        }
+    }
+}
