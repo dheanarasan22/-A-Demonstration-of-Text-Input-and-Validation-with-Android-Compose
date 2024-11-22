@@ -1,0 +1,14 @@
+@Composable
+fun EmailInputField(
+    email: String,
+    onEmailChange: (String) -> Unit
+) {
+    val isValid = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    TextInputField(
+        label = "Email",
+        value = email,
+        onValueChange = onEmailChange,
+        isError = email.isNotBlank() && !isValid,
+        errorMessage = if (!isValid) "Invalid email address" else null
+    )
+}
