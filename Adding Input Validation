@@ -1,0 +1,25 @@
+@Composable
+fun ValidatedInputField(
+    label: String,
+    value: String,
+    onValueChange: (String) -> Unit,
+    isValid: Boolean,
+    errorMessage: String
+) {
+    Column(modifier = Modifier.padding(8.dp)) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            label = { Text(label) },
+            isError = !isValid,
+            modifier = Modifier.fillMaxWidth()
+        )
+        if (!isValid) {
+            Text(
+                text = errorMessage,
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+    }
+}
